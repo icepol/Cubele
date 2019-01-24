@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 27346fd3cf44d473a8049893e6d92007
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - jump: {fileID: 8300000, guid: b902443ec0aa14d6bb966eed11ff2191, type: 3}
+  - pickupCoin: {instanceID: 0}
+  - newCoin: {instanceID: 0}
+  - explosion: {fileID: 8300000, guid: abb448f08156a4faf97ff522ac343fda, type: 3}
+  - buttonClick: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
