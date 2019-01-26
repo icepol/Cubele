@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour {
     static int score;
     static int bonus;
     static float distance;
+    static float playTime;
 
     public static int Score {
         get {
@@ -37,9 +38,19 @@ public class PlayerStats : MonoBehaviour {
         }
     }
 
+    public static float PlayTime {
+        get {
+            return playTime;
+        }
+        set {
+            playTime = value;
+        }
+    }
+
     public static void ResetAll() {
         score = 0;
         distance = 0;
         bonus = 0;
+        playTime = 0;
     }
 }

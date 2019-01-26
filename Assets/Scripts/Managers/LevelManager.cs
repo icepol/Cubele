@@ -11,7 +11,12 @@ public class LevelManager : MonoBehaviour
         IsGameRunning = false;
 
         EventManager.AddListener("StartGame", OnStartGame);
-        EventManager.AddListener("PlaterDie", OnPlayerDie);
+        EventManager.AddListener("PlayerDie", OnPlayerDie);
+
+        Ads.Initialize();
+        GameServices.Initialize();
+
+        AnalyticsEvent.ScreenVisit("Game");
     }
 
     void OnDestroy() {
@@ -31,5 +36,7 @@ public class LevelManager : MonoBehaviour
     void OnPlayerDie() {
         AnalyticsEvent.GameOver();
         IsGameRunning = false;
+
+        Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
     }
 }

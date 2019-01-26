@@ -16,6 +16,7 @@ public struct UserScore {
 
 public class GameServices : MonoBehaviour {
 
+    static bool isInitialized;
     static bool showAuthentication = true;
     static bool isAuthenticated = false;
 
@@ -23,6 +24,9 @@ public class GameServices : MonoBehaviour {
     static Dictionary<string, UserScore[]> boardsScores = new Dictionary<string, UserScore[]>();
 
     public static void Initialize() {
+        if (isInitialized)
+            return;
+
 #if UNITY_ANDROID
             PlayGamesPlatform.Activate();
             PlayGamesPlatform.DebugLogEnabled = true;
@@ -32,6 +36,8 @@ public class GameServices : MonoBehaviour {
             showAuthentication = false;
             Social.localUser.Authenticate(OnUserAuthenticated);
         }
+
+        isInitialized = true;
     }
 
     public static void ShowLeaderBoard() {

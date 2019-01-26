@@ -4,24 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 
-public class Ads : MonoBehaviour {
-
-    public delegate void OnAdRewarded();
-    public delegate void OnAdNotRewarded();
-
-    public static event OnAdRewarded AdRewarded;
-    public static event OnAdNotRewarded AdNotRewarded;
+public class Ads {
 
     static InterstitialAd interstitial;
     static RewardBasedVideoAd rewards;
 
+    static bool isInitialized;
+
     // Use this for initialization
-    static void Start() {
-        // MobileAds.Initialize(Constants.AdmobAppId);
+    public static void Initialize() {
+        if (isInitialized)
+            return;
+
+        MobileAds.Initialize(Constants.AdmobAppId);
+        isInitialized = true;
     }
 
     #region INTERSTITIAL
     public static void RequestInterstitial(string InterstitialAdId) {
+        Initialize();
+
         interstitial = new InterstitialAd(InterstitialAdId);
         interstitial.OnAdLoaded += OnLoaded;
         interstitial.OnAdFailedToLoad += OnLoadFailed;
@@ -34,7 +36,7 @@ public class Ads : MonoBehaviour {
     }
 
     public static bool IsInterstitialLoaded() {
-        return interstitial != null && interstitial.IsLoaded();
+       return interstitial != null && interstitial.IsLoaded();
     }
 
     public static void ShowInterstitial() {
@@ -52,6 +54,8 @@ public class Ads : MonoBehaviour {
 
     #region REWARDS
     static RewardBasedVideoAd RewardsAds() {
+        Initialize();
+
         if (rewards == null) {
             rewards = RewardBasedVideoAd.Instance;
             rewards.OnAdLoaded += OnRewardLoaded;
@@ -82,43 +86,41 @@ public class Ads : MonoBehaviour {
 
     #region CALLBACK
     static void OnLoaded(object sender, EventArgs e) {
-        print("Ad loaded");
+        Debug.Log("Ad loaded");
     }
 
     static void OnLoadFailed(object sender, AdFailedToLoadEventArgs e) {
-        print("Ad load failed: " + e.Message);
+        Debug.Log("Ad load failed: " + e.Message);
     }
 
     static void OnOpening(object sender, EventArgs e) {
-        print("Ad opening");
+        Debug.Log("Ad opening");
     }
 
     static void OnClose(object sender, EventArgs e) {
-        print("Ad closing");
+        Debug.Log("Ad closing");
     }
 
     static void OnRewardLoaded(object sender, EventArgs e) {
-        print("Reward Ad loaded");
+        Debug.Log("Reward Ad loaded");
     }
 
     static void OnRewardLoadFailed(object sender, AdFailedToLoadEventArgs e) {
-        print("Reward Ad load failed: " + e.Message);
+        Debug.Log("Reward Ad load failed: " + e.Message);
     }
 
     static void OnRewardOpening(object sender, EventArgs e) {
-        print("Reward Ad opening");
+        Debug.Log("Reward Ad opening");
     }
 
     static void OnRewardClose(object sender, EventArgs e) {
-        print("Reward Ad closing");
-
-        AdNotRewarded();
+        Debug.Log("Reward Ad closing");
+        EventManager.TriggerEvent("AdNotRewarded");
     }
 
     static void OnRewarded(object sender, Reward e) {
-        print(String.Format("Ad rewarded -> type: {0}, amount: {1}", e.Type, e.Amount));
-
-        AdRewarded();
+        Debug.Log(String.Format("Ad rewarded -> type: {0}, amount: {1}", e.Type, e.Amount));
+        EventManager.TriggerEvent("AdRewarded");
     }
     #endregion
 }

@@ -24,6 +24,7 @@ public class ScoreManager : MonoBehaviour
         if (isDead)
             return;
 
+        PlayerStats.PlayTime += Time.deltaTime;
         PlayerStats.Distance += Time.deltaTime;
         PlayerStats.Score = (int)(PlayerStats.Distance * 10) + PlayerStats.Bonus;
 
