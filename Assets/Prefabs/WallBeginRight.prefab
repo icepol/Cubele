@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1477553901643504900}
   - component: {fileID: 1477553901643504901}
   m_Layer: 0
-  m_Name: RightWallBegin
+  m_Name: WallBeginRight
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477553901643504896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 5, z: 0}
+  m_LocalPosition: {x: 4, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: -1805975765
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b294e2215d93448388e5d466cccbf2aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d18f2ee54d2db443786017b639e0e694, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,5 +96,5 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.0057504177, y: -10.008901}
-  - {x: -1.2506642, y: 0.0018959045}
+  - {x: -0.782377, y: -9.999342}
+  - {x: -2.028385, y: -0.00096321106}

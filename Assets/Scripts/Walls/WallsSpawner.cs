@@ -9,6 +9,7 @@ public class WallsSpawner : MonoBehaviour
     [SerializeField] GameObject[] wallPrefabs;
 
     List<Transform> wallsOnScreen = new List<Transform>();
+    int wallsCreated;
 
     void Start() {
         foreach (Transform child in transform) {
@@ -19,8 +20,7 @@ public class WallsSpawner : MonoBehaviour
     void Update() {
         if (!LevelManager.IsGameRunning)
             return;
-
-        int newWallsRequired = 0;
+            
         List<Transform> currentWallsOnScreen = new List<Transform>();
 
         float offset = moveSpeed * Time.deltaTime;
@@ -47,13 +47,18 @@ public class WallsSpawner : MonoBehaviour
     }
 
     Transform CreateWall(Vector3 wallPosition) {
+        // which wall will be the next
+        int wallIndex = Random.Range(0, Mathf.Min(wallPrefabs.Length, 1 + wallsCreated / 5));
+
         // spawn new wall
         GameObject wallObject = Instantiate(
-            wallPrefabs[Random.Range(0, wallPrefabs.Length)],
+            wallPrefabs[wallIndex],
             new Vector2(wallPosition.x, wallPosition.y + wallHeight),
             Quaternion.identity,
             transform
         );
+
+        wallsCreated++;
 
         return wallObject.transform;
     }

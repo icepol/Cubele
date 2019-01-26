@@ -1517,6 +1517,11 @@ MonoBehaviour:
   wallHeight: 10
   wallPrefabs:
   - {fileID: 1649997958649752982, guid: af82cd9440fbb47e2a2656dc755b9983, type: 3}
+  - {fileID: 1649997958649752982, guid: fa7a57418ff3f4cf8a986cebabd6fe0c, type: 3}
+  - {fileID: 1584309952345842343, guid: 42df7efd93c7b497d89f1d0fff9e6a27, type: 3}
+  - {fileID: 9191117923690899700, guid: de7897283b42849c8bafba97372aeeb1, type: 3}
+  - {fileID: 4640201191560552137, guid: 28b2110a2a0e14cba9fa2ad1e1a56964, type: 3}
+  - {fileID: 1787583858732345931, guid: ae55e637add1c4d898ee22406abf5038, type: 3}
 --- !u!1001 &830740915014289164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1596,7 +1601,7 @@ PrefabInstance:
     - target: {fileID: 1649997958649752982, guid: af82cd9440fbb47e2a2656dc755b9983,
         type: 3}
       propertyPath: m_Name
-      value: Walls
+      value: WallsTriangles
       objectReference: {fileID: 0}
     - target: {fileID: 1649997958649752983, guid: af82cd9440fbb47e2a2656dc755b9983,
         type: 3}

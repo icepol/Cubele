@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8322729697145503744}
   - component: {fileID: 8322729697145503747}
   m_Layer: 0
-  m_Name: LeftWallBegin
+  m_Name: WallBeginLeft
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: -1805975765
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d17558988eb2e48708d9fca1037c69ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4825fe35e3e3348088718b13b9f564b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,5 +96,5 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0, y: -10.091569}
-  - {x: 1.2612178, y: 0.010612488}
+  - {x: 0.7711847, y: -10.001597}
+  - {x: 2.0510464, y: 0.006743908}
