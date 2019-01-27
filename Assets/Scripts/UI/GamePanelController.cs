@@ -6,6 +6,8 @@ public class GamePanelController : MonoBehaviour
 {
     [SerializeField] GameObject perfectLabel;
 
+    Coroutine collectBonusCoroutine;
+
     void Start() {
         // disable "Perfect" label
         perfectLabel.SetActive(false);
@@ -27,7 +29,10 @@ public class GamePanelController : MonoBehaviour
     }
 
     void OnCollectBonus() {
-        StartCoroutine(CollectBonus());
+        if (collectBonusCoroutine != null)
+            StopCoroutine(collectBonusCoroutine);
+
+        collectBonusCoroutine = StartCoroutine(CollectBonus());
     }
 
     IEnumerator CollectBonus() {
