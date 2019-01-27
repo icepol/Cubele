@@ -42,5 +42,8 @@ public class ScoreManager : MonoBehaviour
         if (PlayerStats.Score > Settings.TopScore) {
             Settings.TopScore = PlayerStats.Score;
         }
+
+        GameServices.ReportScore(Constants.TopScoreLeaderBoardId, PlayerStats.Score);
+        GameServices.ReportScore(Constants.TopDistanceReachedId, (int)(PlayerStats.Distance * 100));
     }
 }

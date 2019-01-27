@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MenuPanelController : MonoBehaviour
 {
+    [SerializeField] GameObject buttonsPanel;
+
     Animator animator;
     bool isGameOver;
 
@@ -13,6 +15,7 @@ public class MenuPanelController : MonoBehaviour
 
     void Start() {
         EventManager.AddListener("PlayerDie", OnPlayerDie);
+        EventManager.AddListener("StartGame", OnStartGame);
     }
 
     void Update() {
@@ -20,13 +23,29 @@ public class MenuPanelController : MonoBehaviour
             return;
 
         if (Input.GetMouseButtonDown(0)) {
-            animator.SetTrigger("StartGame");
+            // start game on tap to screen
+            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 3.4f) {
+                // first part contains buttons
+                animator.SetTrigger("StartGame");
 
-            EventManager.TriggerEvent("StartGame");
+                EventManager.TriggerEvent("StartGame");
+            }
         }
     }
 
     void OnPlayerDie() {
         isGameOver = true;
+    }
+
+    void OnStartGame() {
+        buttonsPanel.SetActive(false);
+    }
+
+    public void OnSoundsButtonClick() {
+
+    }
+
+    public void OnLeaderboardButtonClick() {
+        GameServices.ShowLeaderBoard();
     }
 }
