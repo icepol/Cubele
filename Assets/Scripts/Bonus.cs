@@ -34,6 +34,7 @@ public class Bonus : MonoBehaviour
                 soundsManager.PickupCoin();
                 Explosion(explosionBonus);
                 PlayerStats.Bonus += 50;
+                EventManager.TriggerEvent("CollectBonus");
             }
             else {
                 Explosion(explosionMine);
