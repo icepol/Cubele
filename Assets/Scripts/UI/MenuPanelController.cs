@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuPanelController : MonoBehaviour
 {
     [SerializeField] GameObject buttonsPanel;
+    [SerializeField] Image buttonSoundImage;
 
     Animator animator;
     bool isGameOver;
@@ -16,6 +18,8 @@ public class MenuPanelController : MonoBehaviour
     void Start() {
         EventManager.AddListener("PlayerDie", OnPlayerDie);
         EventManager.AddListener("StartGame", OnStartGame);
+
+        UpdateButtonSound();
     }
 
     void Update() {
@@ -42,10 +46,17 @@ public class MenuPanelController : MonoBehaviour
     }
 
     public void OnSoundsButtonClick() {
-
+        Settings.Sounds = !Settings.Sounds;
+        UpdateButtonSound();
     }
 
     public void OnLeaderboardButtonClick() {
         GameServices.ShowLeaderBoard();
+    }
+
+    void UpdateButtonSound() {
+        Color color = buttonSoundImage.color;
+        color.a = Settings.Sounds ? 1f : 0.5f;
+        buttonSoundImage.color = color;
     }
 }
