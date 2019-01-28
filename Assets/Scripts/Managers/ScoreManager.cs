@@ -41,6 +41,7 @@ public class ScoreManager : MonoBehaviour
 
         if (PlayerStats.Score > Settings.TopScore) {
             Settings.TopScore = PlayerStats.Score;
+            PlayerStats.IsNewTop = true;
         }
 
         GameServices.ReportScore(Constants.TopScoreLeaderBoardId, PlayerStats.Score);

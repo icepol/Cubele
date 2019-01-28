@@ -8,49 +8,19 @@ public class PlayerStats : MonoBehaviour {
     static int bonus;
     static float distance;
     static float playTime;
+    static bool isNewTop; 
 
-    public static int Score {
-        get {
-            return score;
-        }
-        set {
-            score = value;
-        }
-    }
-
-    public static int Bonus {
-        get {
-            return bonus;
-        }
-        set {
-            bonus = value;
-        }
-    }
-
-    public static float Distance {
-        get {
-            return distance;
-        }
-        set {
-            if (value > distance) {
-                distance = value;
-            }
-        }
-    }
-
-    public static float PlayTime {
-        get {
-            return playTime;
-        }
-        set {
-            playTime = value;
-        }
-    }
+    public static int Score { get; set; }
+    public static int Bonus { get; set; }
+    public static float Distance { get; set; }
+    public static float PlayTime { get; set; }
+    public static bool IsNewTop { get; set; }
 
     public static void ResetAll() {
-        score = 0;
-        distance = 0;
-        bonus = 0;
-        playTime = 0;
+        Score = 0;
+        Distance = 0;
+        Bonus = 0;
+        PlayTime = 0;
+        IsNewTop = false;
     }
 }

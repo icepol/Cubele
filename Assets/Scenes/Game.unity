@@ -747,6 +747,7 @@ MonoBehaviour:
   pickupCoin: {fileID: 8300000, guid: 66f3adc117e674780a38e04b39a505d9, type: 3}
   newCoin: {fileID: 0}
   explosion: {fileID: 8300000, guid: abb448f08156a4faf97ff522ac343fda, type: 3}
+  newTopScore: {fileID: 8300000, guid: 1f86834e5aeed41868f78dccbc990735, type: 3}
   buttonClick: {fileID: 0}
 --- !u!4 &922423541
 Transform:
