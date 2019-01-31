@@ -17,7 +17,7 @@ public class StarsSpawner : MonoBehaviour
 
             GameObject star = Instantiate(
                 starPrefab,
-                new Vector2(Random.Range(-3, 3), -6),
+                new Vector2(Random.Range(-3f, 3f), -6),
                 Quaternion.Euler(0, 0, Random.Range(0, 360)),
                 transform
             );

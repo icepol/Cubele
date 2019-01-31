@@ -20,6 +20,8 @@ public class Star : MonoBehaviour {
         position.y = startPosition;
         transform.position = position;
 
+        transform.localScale *= speed;
+
         EventManager.AddListener("StartGame", OnStartGame);
     }
 
