@@ -6,6 +6,7 @@ public class Bonus : MonoBehaviour
 {
     [SerializeField] GameObject explosionBonus;
     [SerializeField] GameObject explosionMine;
+    [SerializeField] GameObject perfect;
 
     Animator animator;
     SoundsManager soundsManager;
@@ -31,10 +32,7 @@ public class Bonus : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player")) {
             if (isBonus) {
-                soundsManager.PickupCoin();
-                Explosion(explosionBonus);
-                PlayerStats.Bonus += 50;
-                EventManager.TriggerEvent("CollectBonus");
+                PlayerBonusCollision();
             }
             else {
                 Explosion(explosionMine);
@@ -46,7 +44,7 @@ public class Bonus : MonoBehaviour
     }
 
     IEnumerator Animate() {
-        yield return new WaitForSeconds(Random.Range(0, 0.5f));
+        yield return new WaitForSeconds(Random.Range(0, 1f));
 
         while (true) {
             yield return new WaitForSeconds(1.6f);
@@ -64,5 +62,16 @@ public class Bonus : MonoBehaviour
         explosionObject.transform.position = new Vector3(
             transform.position.x, transform.position.y, 0
         );
+    }
+
+    void PlayerBonusCollision() {
+        soundsManager.PickupCoin();
+        Explosion(explosionBonus);
+
+        PlayerStats.Bonus += 50;
+
+        Instantiate(perfect, transform.position, Quaternion.identity);
+
+        EventManager.TriggerEvent("BonusCollision");
     }
 }

@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
         EventManager.AddListener("StartGame", OnStartGame);
         EventManager.AddListener("PlayerDie", OnPlayerDie);
+        EventManager.AddListener("BonusCollision", OnBonusCollision);
 
         Ads.Initialize();
         GameServices.Initialize();
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour
     void OnDestroy() {
         EventManager.RemoveListener("StartGame", OnStartGame);
         EventManager.RemoveListener("PlayerDie", OnPlayerDie);
+        EventManager.RemoveListener("BonusCollision", OnBonusCollision);
     }
 
     public static bool IsGameRunning {
@@ -38,5 +40,17 @@ public class LevelManager : MonoBehaviour
         IsGameRunning = false;
 
         Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
+    }
+
+    void OnBonusCollision() {
+        StartCoroutine(SlowMotion());
+    }
+
+    IEnumerator SlowMotion() {
+        // slow down and wait 1s
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(0.2f);
+
+        Time.timeScale = 1f;
     }
 }
