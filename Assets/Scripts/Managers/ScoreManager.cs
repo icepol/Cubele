@@ -25,8 +25,6 @@ public class ScoreManager : MonoBehaviour
             return;
 
         PlayerStats.PlayTime += Time.deltaTime;
-        PlayerStats.Distance += Time.deltaTime;
-        PlayerStats.Score = (int)(PlayerStats.Distance * 10) + PlayerStats.Bonus;
 
         scoreText.text = PlayerStats.Score.ToString();
     }
@@ -43,6 +41,9 @@ public class ScoreManager : MonoBehaviour
             Settings.TopScore = PlayerStats.Score;
             PlayerStats.IsNewTop = true;
         }
+
+        if (PlayerStats.Distance > Settings.TopDistance)
+            Settings.TopDistance = PlayerStats.Distance;
 
         GameServices.ReportScore(Constants.TopScoreLeaderBoardId, PlayerStats.Score);
         GameServices.ReportScore(Constants.TopDistanceReachedId, (int)(PlayerStats.Distance * 100));

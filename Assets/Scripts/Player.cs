@@ -115,6 +115,8 @@ public class Player : MonoBehaviour
             transform.position.x, transform.position.y, 0
         );
 
+        PlayerStats.Distance += transform.position.y;
+
         EventManager.TriggerEvent("PlayerDie");
 
         soundsManager.Explosion();

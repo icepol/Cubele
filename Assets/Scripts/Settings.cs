@@ -7,6 +7,7 @@ public class Settings : MonoBehaviour {
     const string SOUNDS_KEY = "sounds";
     const string TOP_SCORE_KEY = "top_score";
     const string LAST_SCORE_KEY = "last_score";
+    const string TOP_DISTANCE_KEY = "top_distance";
     const string IS_NEW_TOP_KEY = "is_new_top";
     const string IS_FIRST_RUN = "is_first_run";
     const string SHOW_CONTINUE_BUTTIN = "show_continue_button";
@@ -51,6 +52,16 @@ public class Settings : MonoBehaviour {
             else {
                 IsNewTop = false;
             }
+        }
+    }
+
+    public static float TopDistance {
+        get {
+            return PlayerPrefs.GetFloat(TOP_DISTANCE_KEY, 0);
+        }
+
+        set {
+            PlayerPrefs.SetFloat(TOP_DISTANCE_KEY, value);
         }
     }
 

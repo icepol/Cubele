@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallsScroll : MonoBehaviour
+public class Wall : MonoBehaviour
 {
-
-
-
+    void Start()
+    {
+    }
 }

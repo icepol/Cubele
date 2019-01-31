@@ -15,7 +15,15 @@ class IntEvent : UnityEvent<int> {
 
 }
 
+class FloatEvent : UnityEvent<float> {
+
+}
+
 class StringEvent : UnityEvent<string> {
+
+}
+
+class GameObjectEvent : UnityEvent<GameObject> {
 
 }
 
@@ -26,6 +34,7 @@ public class EventManager : MonoBehaviour {
     static Dictionary<string, UnityEvent<bool>> eventsBool = new Dictionary<string, UnityEvent<bool>>();
     static Dictionary<string, UnityEvent<int>> eventsInt = new Dictionary<string, UnityEvent<int>>();
     static Dictionary<string, UnityEvent<string>> eventsString = new Dictionary<string, UnityEvent<string>>();
+    static Dictionary<string, UnityEvent<GameObject>> eventsGameObject = new Dictionary<string, UnityEvent<GameObject>>();
 
     #region VOID
     public static void AddListener(string eventName, UnityAction listener) {
@@ -134,6 +143,28 @@ public class EventManager : MonoBehaviour {
     public static void TriggerEvent(string eventName, string arg) {
         if (eventsString.ContainsKey(eventName))
             eventsString[eventName].Invoke(arg);
+    }
+    # endregion
+
+    #region GAMEOBJECT
+    public static void AddListener(string eventName, UnityAction<GameObject> listener) {
+        if (!eventsGameObject.ContainsKey(eventName)) {
+            eventsGameObject.Add(eventName, new GameObjectEvent());
+        }
+
+        eventsGameObject[eventName].AddListener(listener);
+    }
+
+    public static void RemoveListener(string eventName, UnityAction<GameObject> listener) {
+        if (!eventsString.ContainsKey(eventName))
+            return;
+
+        eventsGameObject[eventName].RemoveListener(listener);
+    }
+
+    public static void TriggerEvent(string eventName, GameObject arg) {
+        if (eventsGameObject.ContainsKey(eventName))
+            eventsGameObject[eventName].Invoke(arg);
     }
     # endregion
 }

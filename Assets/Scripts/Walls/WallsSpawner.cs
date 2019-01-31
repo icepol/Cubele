@@ -43,7 +43,12 @@ public class WallsSpawner : MonoBehaviour
             }
         }
 
+        PlayerStats.Distance += offset;
+        PlayerStats.Score = (int)(PlayerStats.Distance * 10) + PlayerStats.Bonus;
+
         wallsOnScreen = currentWallsOnScreen;
+
+        EventManager.TriggerEvent("WallMove", new Vector3(0, -offset, 0));
     }
 
     Transform CreateWall(Vector3 wallPosition) {

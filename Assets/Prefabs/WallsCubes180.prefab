@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5135619964602308623}
-  - component: {fileID: 402542021017750494}
+  - component: {fileID: 7510965081890399905}
   m_Layer: 0
   m_Name: WallsCubes180
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &402542021017750494
+--- !u!114 &7510965081890399905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1787583858732345931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f393df33848204f8face07fd6a9b5e64, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cd79ede8866c49bfa958566d5076b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3845589806709024521
