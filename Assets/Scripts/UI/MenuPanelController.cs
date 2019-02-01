@@ -23,7 +23,7 @@ public class MenuPanelController : MonoBehaviour
     }
 
     void Update() {
-        if (LevelManager.IsGameRunning || isGameOver)
+        if (LevelManager.IsGameRunning || isGameOver || RateManager.IsOnScreen)
             return;
 
         if (Input.GetMouseButtonDown(0)) {
