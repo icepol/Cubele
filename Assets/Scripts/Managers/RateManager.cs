@@ -7,6 +7,8 @@ using UnityEngine.Analytics;
 public class RateManager : MonoBehaviour {
 
     [SerializeField] GameObject ratePanel;
+    [SerializeField] int maxShowForm = 3;
+    [SerializeField] int skipShowForm = 5;
     [SerializeField] string nextScreenName = "Menu";
 
     static bool isOnScreen;
@@ -52,7 +54,7 @@ public class RateManager : MonoBehaviour {
         Application.OpenURL(Constants.AppStoreLink);
     }
 
-    public void NoButtonClick() {
+    public void LaterButtonClick() {
         ratePanel.SetActive(false);
         isOnScreen = false;
 
