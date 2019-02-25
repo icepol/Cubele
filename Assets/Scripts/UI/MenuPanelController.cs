@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MenuPanelController : MonoBehaviour
 {
     [SerializeField] GameObject buttonsPanel;
+    [SerializeField] Text cubeleText;
     [SerializeField] Image buttonSoundImage;
 
     Animator animator;
@@ -20,6 +21,9 @@ public class MenuPanelController : MonoBehaviour
         EventManager.AddListener("StartGame", OnStartGame);
 
         UpdateButtonSound();
+
+        if (PlayerStats.ShowGameOverPanel)
+            cubeleText.enabled = false;
     }
 
     void Update() {
@@ -42,6 +46,7 @@ public class MenuPanelController : MonoBehaviour
     }
 
     void OnStartGame() {
+        // hide buttons (leaderboard, sounds)
         buttonsPanel.SetActive(false);
     }
 

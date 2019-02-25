@@ -6,7 +6,7 @@ using UnityEngine.Analytics;
 public class LevelManager : MonoBehaviour
 {
     void Start() {
-        PlayerStats.ResetAll();
+        Application.targetFrameRate = 60;
 
         IsGameRunning = false;
 
@@ -31,6 +31,9 @@ public class LevelManager : MonoBehaviour
     }
 
     void OnStartGame() {
+        PlayerStats.ResetAll();
+        PlayerStats.GamePlayCount++;
+
         AnalyticsEvent.GameStart();
         IsGameRunning = true;
     }
@@ -39,7 +42,9 @@ public class LevelManager : MonoBehaviour
         AnalyticsEvent.GameOver();
         IsGameRunning = false;
 
-        Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
+        if (PlayerStats.GamePlayCount % 2 == 0)
+            // show ad each second game
+            Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
     }
 
     void OnBonusCollision() {

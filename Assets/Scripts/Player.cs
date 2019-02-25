@@ -127,6 +127,9 @@ public class Player : MonoBehaviour
     IEnumerator GameOver() {
         yield return new WaitForSeconds(1.5f);
 
-        SceneManager.LoadScene("GameOver");
+        // panel will be shown
+        PlayerStats.ShowGameOverPanel = true;
+
+        SceneManager.LoadScene("Game");
     }
 }

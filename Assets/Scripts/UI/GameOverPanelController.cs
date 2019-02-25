@@ -12,23 +12,54 @@ public class GameOverPanelController : MonoBehaviour
 
     SoundsManager soundsManager;
 
+    bool isAdShown;
+
     void Awake() {
         soundsManager = FindObjectOfType<SoundsManager>();
     }
 
     void Start() {
-        topScore.text = Settings.TopScore.ToString();
-        yourScore.text = PlayerStats.Score.ToString();
+        if (PlayerStats.ShowGameOverPanel) {
+            // show game over panel
+            topScore.text = Settings.TopScore.ToString();
+            yourScore.text = PlayerStats.Score.ToString();
 
-        newTopLabel.enabled = PlayerStats.IsNewTop;
+            newTopLabel.enabled = PlayerStats.IsNewTop;
 
-        if (PlayerStats.IsNewTop)
-            soundsManager.NewTopScore();
+            if (PlayerStats.IsNewTop)
+                soundsManager.NewTopScore();
+            else
+                // show ad only if there is no new score reached
+                ShowAd();
+
+            // move panel on screen
+            transform.localPosition = Vector2.zero;
+        }
+        else {
+            // remove game over panel off the screen
+            transform.localPosition = new Vector2(-1000, -1000);
+        }
+
+        EventManager.AddListener("StartGame", OnStartGame);
     }
 
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            SceneManager.LoadScene("Game");
+    void OnDestroy() {
+        EventManager.RemoveListener("StartGame", OnStartGame);
+    }
+
+    void OnStartGame() {
+        // remove game panel off the screen
+        transform.localPosition = new Vector2(-1000, -1000);
+
+        if (isAdShown) {
+            Ads.DestroyInterstitial();
+        }
+    }
+
+    void ShowAd() {
+        if (PlayerStats.GamePlayCount % 2 == 0) {
+            isAdShown = true;
+            Ads.ShowInterstitial();
         }
     }
 }

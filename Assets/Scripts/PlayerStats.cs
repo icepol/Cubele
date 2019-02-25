@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
 
-    static int score;
-    static int bonus;
-    static float distance;
-    static float playTime;
-    static bool isNewTop; 
-
     public static int Score { get; set; }
     public static int Bonus { get; set; }
     public static float Distance { get; set; }
     public static float PlayTime { get; set; }
     public static bool IsNewTop { get; set; }
+    public static int GamePlayCount { get; set; }
+    public static bool ShowGameOverPanel { get; set; }
 
     public static void ResetAll() {
         Score = 0;
@@ -22,5 +18,6 @@ public class PlayerStats : MonoBehaviour {
         Bonus = 0;
         PlayTime = 0;
         IsNewTop = false;
+        ShowGameOverPanel = false;
     }
 }

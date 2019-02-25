@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1477553901643504903}
   - component: {fileID: 1477553901643504900}
   - component: {fileID: 1477553901643504901}
+  - component: {fileID: 8286210767886543800}
   m_Layer: 0
   m_Name: WallBeginRight
   m_TagString: Wall
@@ -98,3 +99,24 @@ EdgeCollider2D:
   m_Points:
   - {x: -0.782377, y: -9.999342}
   - {x: -2.028385, y: -0.00096321106}
+--- !u!50 &8286210767886543800
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477553901643504896}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
