@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
     }
 
     void OnBonusCollision(GameObject bonus) {
-        StartCoroutine(SlowMotion());
+        // StartCoroutine(SlowMotion());
     }
 
     IEnumerator SlowMotion() {
