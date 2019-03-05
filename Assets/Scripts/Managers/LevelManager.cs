@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
             Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
     }
 
-    void OnBonusCollision() {
+    void OnBonusCollision(GameObject bonus) {
         StartCoroutine(SlowMotion());
     }
 

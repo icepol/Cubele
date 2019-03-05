@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
+  destroyDelay: 1
+  pointsText: {fileID: 3602808702609746186}
+  pointsTextShadow: {fileID: 3602808703459700421}
 --- !u!1 &3602808702354044769
 GameObject:
   m_ObjectHideFlags: 0

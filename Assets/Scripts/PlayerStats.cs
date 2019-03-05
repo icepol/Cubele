@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour {
     public static bool IsNewTop { get; set; }
     public static int GamePlayCount { get; set; }
     public static bool ShowGameOverPanel { get; set; }
+    public static int ComboMultiplier { get; set; }
 
     public static void ResetAll() {
         Score = 0;
@@ -19,5 +20,6 @@ public class PlayerStats : MonoBehaviour {
         PlayTime = 0;
         IsNewTop = false;
         ShowGameOverPanel = false;
+        ComboMultiplier = 1;
     }
 }

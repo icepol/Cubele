@@ -68,10 +68,11 @@ public class Bonus : MonoBehaviour
         soundsManager.PickupCoin();
         Explosion(explosionBonus);
 
-        PlayerStats.Bonus += 50;
+        EventManager.TriggerEvent("BonusCollision", gameObject);
 
-        Instantiate(perfect, transform.position, Quaternion.identity);
+        PlayerStats.Bonus += 50 * PlayerStats.ComboMultiplier;
 
-        EventManager.TriggerEvent("BonusCollision");
+        GameObject perfectGameObject = Instantiate(perfect, transform.position, Quaternion.identity);
+        perfectGameObject.GetComponent<Perfect>().SetComboMultiplier(PlayerStats.ComboMultiplier);
     }
 }
