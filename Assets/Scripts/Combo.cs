@@ -11,6 +11,7 @@ public class Combo : MonoBehaviour
     List<Bonus> bonuses;
     Bonus nextExpectedBonus;
     bool addNextToExpected;
+    Coroutine resetCombo;
 
     void Start() {
         bonuses = new List<Bonus>();
@@ -47,10 +48,17 @@ public class Combo : MonoBehaviour
             if (currentBonus == nextExpectedBonus) {
                 PlayerStats.ComboMultiplier++;
                 EventManager.TriggerEvent("Combo");
+
+                if (resetCombo != null)
+                    StopCoroutine(resetCombo);
+
+                resetCombo = StartCoroutine(ResetCombo());
             }
             else {
                 PlayerStats.ComboMultiplier = 1;
                 addNextToExpected = false;
+
+                EventManager.TriggerEvent("ResetCombo");
             }
         }
 
@@ -68,5 +76,12 @@ public class Combo : MonoBehaviour
 
         // trim bonus list
         bonuses = bonuses.GetRange(index, bonuses.Count - index);
+    }
+
+    IEnumerator ResetCombo() {
+        yield return new WaitForSeconds(5);
+
+        PlayerStats.ComboMultiplier = 1;
+        EventManager.TriggerEvent("ResetCombo");
     }
 }

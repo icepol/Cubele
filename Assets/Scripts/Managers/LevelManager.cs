@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour
     void OnPlayerDie() {
         AnalyticsEvent.GameOver();
         IsGameRunning = false;
+        Handheld.Vibrate();
 
         if (PlayerStats.GamePlayCount % 2 == 0)
             // show ad each second game
