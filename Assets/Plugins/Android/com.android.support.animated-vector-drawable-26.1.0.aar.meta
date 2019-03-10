@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 7abc67fb5944c44cfb20cdb931788936
+guid: ef370f530e2f24ddbba7b9f24287dec0
 labels:
 - gpsr
-timeCreated: 1541528532
-licenseType: Pro
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
+  isExplicitlyReferenced: 0
   platformData:
   - first:
       Android: Android
