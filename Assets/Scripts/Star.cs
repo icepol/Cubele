@@ -21,18 +21,12 @@ public class Star : MonoBehaviour {
         transform.position = position;
 
         transform.localScale *= speed;
-
-        EventManager.AddListener("StartGame", OnStartGame);
-    }
-
-    void OnDestroy() {
-        EventManager.RemoveListener("StartGame", OnStartGame);
     }
 
     // Update is called once per frame
     void Update() {
         Vector2 position = transform.position;
-        position.y -= speed * Time.deltaTime;
+        position.y -= (speed + (LevelManager.IsGameRunning ? 2f : 0)) * Time.deltaTime;
         transform.position = position;
 
         if (position.y < -6)
@@ -41,10 +35,5 @@ public class Star : MonoBehaviour {
             animator.SetTrigger("Hide");
         else if (position.y < startPosition)
             animator.SetTrigger("Show");
-    }
-
-    void OnStartGame() {
-        // add speed of the walls
-        speed += 2f;
     }
 }
