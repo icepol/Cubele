@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class GameOverPanelController : MonoBehaviour
 {
     [SerializeField] Text topScore;
     [SerializeField] Text yourScore;
     [SerializeField] Text newTopLabel;
+
+    [SerializeField] Image[] buttonSoundImages;
 
     SoundsManager soundsManager;
 
@@ -41,6 +45,8 @@ public class GameOverPanelController : MonoBehaviour
         }
 
         EventManager.AddListener("StartGame", OnStartGame);
+
+        UpdateButtonSound();
     }
 
     void OnDestroy() {
@@ -60,6 +66,41 @@ public class GameOverPanelController : MonoBehaviour
         if (PlayerStats.GamePlayCount % 2 == 0) {
             isAdShown = true;
             Ads.ShowInterstitial();
+        }
+    }
+
+    public void OnSoundsButtonClick() {
+        Settings.Sounds = !Settings.Sounds;
+        UpdateButtonSound();
+    }
+
+    public void OnLeaderboardButtonClick() {
+        AnalyticsEvent.ScreenVisit("LeaderBoard");
+        
+        GameServices.ShowLeaderBoard();
+    }
+
+    public void OnReplayButtonClick() {
+        EventManager.TriggerEvent("StartGame");
+    }
+
+    public void OnShareButtonClick() {
+        AnalyticsEvent.ScreenVisit("Share");
+
+        string filePath = Path.Combine(Application.streamingAssetsPath, "Cubele.png");
+
+        new NativeShare().AddFile(filePath).SetSubject(
+            "Beat my score in #cubele"
+        ).SetText(
+            "I scored " + PlayerStats.Score.ToString() + " points in #cubele\nCan you beat my score?\n" + Constants.ShareLink
+        ).Share();
+    }
+
+    void UpdateButtonSound() {
+        foreach (Image image in buttonSoundImages) {
+            Color color = image.color;
+            color.a = Settings.Sounds ? 1f : 0.5f;
+            image.color = color;
         }
     }
 }

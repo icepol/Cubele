@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class MenuPanelController : MonoBehaviour
 {
@@ -17,13 +18,15 @@ public class MenuPanelController : MonoBehaviour
     }
 
     void Start() {
-        EventManager.AddListener("PlayerDie", OnPlayerDie);
+        if (PlayerStats.ShowGameOverPanel) {
+            // keep this panel turned off
+            gameObject.SetActive(false);
+            return;
+        }
+
         EventManager.AddListener("StartGame", OnStartGame);
 
         UpdateButtonSound();
-
-        if (PlayerStats.ShowGameOverPanel)
-            cubeleText.enabled = false;
     }
 
     void Update() {
@@ -41,13 +44,8 @@ public class MenuPanelController : MonoBehaviour
         }
     }
 
-    void OnPlayerDie() {
-        isGameOver = true;
-    }
-
     void OnStartGame() {
-        // hide buttons (leaderboard, sounds)
-        buttonsPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void OnSoundsButtonClick() {
@@ -56,6 +54,8 @@ public class MenuPanelController : MonoBehaviour
     }
 
     public void OnLeaderboardButtonClick() {
+        AnalyticsEvent.ScreenVisit("LeaderBoard");
+        
         GameServices.ShowLeaderBoard();
     }
 
