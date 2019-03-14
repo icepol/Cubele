@@ -53,10 +53,10 @@ public class MenuPanelController : MonoBehaviour
         UpdateButtonSound();
     }
 
-    public void OnLeaderboardButtonClick() {
-        AnalyticsEvent.ScreenVisit("LeaderBoard");
-        
-        GameServices.ShowLeaderBoard();
+    public void OnPrivacyPolicyButtonClick() {
+        AnalyticsEvent.ScreenVisit("PrivacyPolicy");
+
+        Application.OpenURL(Constants.PrivacyPolicyURL);
     }
 
     void UpdateButtonSound() {

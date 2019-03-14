@@ -74,6 +74,12 @@ public class GameOverPanelController : MonoBehaviour
         UpdateButtonSound();
     }
 
+    public void OnPrivacyPolicyButtonClick() {
+        AnalyticsEvent.ScreenVisit("PrivacyPolicy");
+
+        Application.OpenURL(Constants.PrivacyPolicyURL);
+    }
+
     public void OnLeaderboardButtonClick() {
         AnalyticsEvent.ScreenVisit("LeaderBoard");
         
