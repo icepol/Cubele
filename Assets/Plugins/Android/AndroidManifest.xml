@@ -20,5 +20,10 @@
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="fb2260268384260540" />
     <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="true" />
     <provider android:name="com.facebook.FacebookContentProvider" android:authorities="com.facebook.app.FacebookContentProvider2260268384260540" android:exported="true" />
+    <provider
+      android:name="com.yasirkula.unity.UnitySSContentProvider"
+      android:authorities="org.kneego.cubele"
+      android:exported="false"
+      android:grantUriPermissions="true" />
   </application>
 </manifest>
