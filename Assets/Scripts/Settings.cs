@@ -5,6 +5,7 @@ using UnityEngine;
 public class Settings : MonoBehaviour {
 
     const string SOUNDS_KEY = "sounds";
+    const string VIBRATIONS_KEY = "vibrations";
     const string TOP_SCORE_KEY = "top_score";
     const string LAST_SCORE_KEY = "last_score";
     const string TOP_DISTANCE_KEY = "top_distance";
@@ -24,6 +25,16 @@ public class Settings : MonoBehaviour {
 
         set {
             PlayerPrefs.SetInt(SOUNDS_KEY, value ? 1 : 0);
+        }
+    }
+
+    public static bool Vibrations {
+        get {
+            return PlayerPrefs.GetInt(VIBRATIONS_KEY, 1) > 0;
+        }
+
+        set {
+            PlayerPrefs.SetInt(VIBRATIONS_KEY, value ? 1 : 0);
         }
     }
 

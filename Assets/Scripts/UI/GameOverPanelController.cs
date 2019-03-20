@@ -45,8 +45,6 @@ public class GameOverPanelController : MonoBehaviour
         }
 
         EventManager.AddListener("StartGame", OnStartGame);
-
-        UpdateButtonSound();
     }
 
     void OnDestroy() {
@@ -67,11 +65,6 @@ public class GameOverPanelController : MonoBehaviour
             isAdShown = true;
             Ads.ShowInterstitial();
         }
-    }
-
-    public void OnSoundsButtonClick() {
-        Settings.Sounds = !Settings.Sounds;
-        UpdateButtonSound();
     }
 
     public void OnPrivacyPolicyButtonClick() {
@@ -100,13 +93,5 @@ public class GameOverPanelController : MonoBehaviour
         ).SetText(
             "I scored " + PlayerStats.Score.ToString() + " points in #cubele\nCan you beat my score?\n" + Constants.ShareLink
         ).Share();
-    }
-
-    void UpdateButtonSound() {
-        foreach (Image image in buttonSoundImages) {
-            Color color = image.color;
-            color.a = Settings.Sounds ? 1f : 0.5f;
-            image.color = color;
-        }
     }
 }
