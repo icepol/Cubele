@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-public class LevelManager : MonoBehaviour
-{
+public class LevelManager : MonoBehaviour {
     void Start() {
         Application.targetFrameRate = 60;
 
@@ -42,8 +41,10 @@ public class LevelManager : MonoBehaviour
         AnalyticsEvent.GameOver();
         IsGameRunning = false;
 
+#if UNITY_IPHONE || UNITY_ANDROID
         if (Settings.Vibrations)
             Handheld.Vibrate();
+#endif
 
         if (PlayerStats.GamePlayCount % 2 == 0)
             // show ad each second game
