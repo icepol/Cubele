@@ -70,6 +70,7 @@ public class Bonus : MonoBehaviour
 
         EventManager.TriggerEvent("BonusCollision", gameObject);
 
+        PlayerStats.BonusCount += 1;
         PlayerStats.Bonus += 50 * PlayerStats.ComboMultiplier;
 
         GameObject perfectGameObject = Instantiate(perfect, transform.position, Quaternion.identity);

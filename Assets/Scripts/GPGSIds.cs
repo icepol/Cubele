@@ -26,6 +26,7 @@ public static class GPGSIds
 {
         public const string leaderboard_top_score = "CgkIlbX0ju0DEAIQAQ"; // <GPGSID>
         public const string leaderboard_top_distance = "CgkIlbX0ju0DEAIQAg"; // <GPGSID>
-
+        public const string leaderboard_bonus_collector = "CgkIlbX0ju0DEAIQBA"; // <GPGSID>
+        public const string leaderboard_longest_gameplay_time = "CgkIlbX0ju0DEAIQBQ"; // <GPGSID>
 }
 

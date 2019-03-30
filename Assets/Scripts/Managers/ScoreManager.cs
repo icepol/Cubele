@@ -47,5 +47,7 @@ public class ScoreManager : MonoBehaviour
 
         GameServices.ReportScore(Constants.TopScoreLeaderBoardId, PlayerStats.Score);
         GameServices.ReportScore(Constants.TopDistanceReachedId, (int)(PlayerStats.Distance * 100));
+        GameServices.ReportScore(Constants.BonusCollectorId, PlayerStats.BonusCount);
+        GameServices.ReportScore(Constants.LongestGameplayId, (int)(PlayerStats.PlayTime * 100));
     }
 }

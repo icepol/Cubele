@@ -26,5 +26,6 @@ MonoBehaviour:
   frictionlessRequests: 1
   iosURLSuffix: 
   appLinkSchemes:
-  - list: []
+  - list:
+    - 
   uploadAccessToken: 

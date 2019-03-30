@@ -45,12 +45,7 @@ public class GameServices : MonoBehaviour {
             Social.localUser.Authenticate(OnUserAuthenticated);
         }
 
-#if UNITY_IPHONE
         Social.ShowLeaderboardUI();
-#elif UNITY_ANDROID
-            PlayGamesPlatform.Instance.ShowLeaderboardUI(Constants.TopScoreLeaderBoardId);
-#else
-#endif
     }
 
     public static void ReportScore(string boardId, int score) {
