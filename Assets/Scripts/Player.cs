@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     Animator animator;
     Animator cameraAnimator;
 
+    public bool IsBouncing { get; set; }
+    bool ignoreCollisionsAndControlls;
+
     void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -48,13 +51,24 @@ public class Player : MonoBehaviour
             rotateSpeed * Time.deltaTime
         );
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (!ignoreCollisionsAndControlls && (
+            Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)
+        ))
             Jump();
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") && !ignoreCollisionsAndControlls) {
+            IsBouncing = true;
+            if (IsBouncing)
+                BounceFromWall();
+            else
+                EventManager.TriggerEvent("Collision");
+        }
+        else if (collision.gameObject.CompareTag("DeadZone")) {
+            // dead zones are on the top and on the bottom of play area
             EventManager.TriggerEvent("Collision");
+        }
     }
 
     void OnDestroy() {
@@ -63,7 +77,7 @@ public class Player : MonoBehaviour
     }
 
     void OnStartGame() {
-        animator.SetBool("IsGameRunning", LevelManager.IsGameRunning);
+        animator.SetBool("IsGameRunning", true);
 
         rb2d.bodyType = RigidbodyType2D.Dynamic;
         rb2d.velocity = Vector2.zero;
@@ -132,4 +146,31 @@ public class Player : MonoBehaviour
 
         SceneManager.LoadScene("Game");
     }
+
+    void BounceFromWall() {
+        cameraAnimator.SetTrigger("Shake");
+
+        // bounce to oposit side
+        moveRight = transform.position.x < 0;
+
+        rb2d.velocity = Vector2.zero;
+
+        rb2d.AddForce(new Vector2(
+            (moveRight ? moveSpeed : -moveSpeed) * 2f,
+            jumpSpeed / 2f
+        ));
+
+        soundsManager.WallCollision();
+
+        StartCoroutine(IgnoreCollision());
+    }
+
+    IEnumerator IgnoreCollision() {
+        ignoreCollisionsAndControlls = true;
+
+        yield return new WaitForSeconds(0.05f);
+
+        ignoreCollisionsAndControlls = false;
+    }
+
 }

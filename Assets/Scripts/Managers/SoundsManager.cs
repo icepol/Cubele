@@ -9,7 +9,9 @@ public class SoundsManager : MonoBehaviour {
     [SerializeField] AudioClip newCoin;
     [SerializeField] AudioClip explosion;
     [SerializeField] AudioClip newTopScore;
- 
+    [SerializeField] AudioClip powerup;
+    [SerializeField] AudioClip wallCollision;
+
     // UI
     [SerializeField] AudioClip buttonClick;
 
@@ -47,6 +49,14 @@ public class SoundsManager : MonoBehaviour {
 
     public void Explosion(Vector2? position = null) {
         Play(explosion, position);
+    }
+
+    public void Powerup(Vector2? position = null) {
+        Play(powerup, position);
+    }
+
+    public void WallCollision(Vector2? position = null) {
+        Play(wallCollision, position);
     }
 
     public void NewTopScore(Vector2? position = null) {

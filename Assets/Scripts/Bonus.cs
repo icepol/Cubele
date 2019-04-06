@@ -34,6 +34,10 @@ public class Bonus : MonoBehaviour
             if (isBonus) {
                 PlayerBonusCollision();
             }
+            else if (PlayerStats.IsImmortality) {
+                // do nothing here
+                return;
+            }
             else {
                 Explosion(explosionMine);
                 EventManager.TriggerEvent("Collision");
@@ -44,11 +48,13 @@ public class Bonus : MonoBehaviour
     }
 
     IEnumerator Animate() {
-        yield return new WaitForSeconds(Random.Range(0, 1f));
+        yield return new WaitForSeconds(Random.Range(0f, 1f));
 
         while (true) {
             yield return new WaitForSeconds(1.6f);
-            isBonus = false;
+
+            // if bonus is freezed all the time it's bonus
+            isBonus = PlayerStats.IsFreezed;
             animator.SetBool("IsBonus", isBonus);
 
             yield return new WaitForSeconds(0.2f);

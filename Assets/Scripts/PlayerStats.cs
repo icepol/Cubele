@@ -13,6 +13,8 @@ public class PlayerStats : MonoBehaviour {
     public static bool ShowGameOverPanel { get; set; }
     public static int ComboMultiplier { get; set; }
     public static int BonusCount { get; set; }
+    public static bool IsFreezed { get; set; }
+    public static bool IsImmortality { get; set; }
 
     public static void ResetAll() {
         Score = 0;
@@ -23,5 +25,7 @@ public class PlayerStats : MonoBehaviour {
         ShowGameOverPanel = false;
         ComboMultiplier = 1;
         BonusCount = 0;
+        IsFreezed = false;
+        IsImmortality = false;
     }
 }
