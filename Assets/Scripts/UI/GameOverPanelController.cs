@@ -56,21 +56,22 @@ public class GameOverPanelController : MonoBehaviour
         // remove game panel off the screen
         transform.localPosition = new Vector2(-1000, -1000);
 
-        //if (isAdShown) {
-        //    Ads.DestroyInterstitial();
-        //}
+        if (isAdShown) {
+            Ads.DestroyInterstitial();
+        }
     }
 
     void ShowAd() {
-        //if (PlayerStats.GamePlayCount % 2 == 0) {
-        //    isAdShown = true;
-        //    Ads.ShowInterstitial();
-        //}
-
         if (PlayerStats.GamePlayCount % 3 == 0) {
-            if (Advertisement.IsReady("video")) {
-                Advertisement.Show("video");
-            }
+            // show Unity ads now
+            if (Ads.LastDisplayedAd == Ads.AdProvider.UNITY || false)
+                // display Google ad if last was Unity
+                Ads.ShowInterstitial();
+            else
+                // display Unity ad if last was Google
+                Ads.ShowUnityAd("video");
+
+            isAdShown = true;
         }
     }
 

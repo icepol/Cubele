@@ -3,20 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.Advertisements;
 
 public class Ads {
+
+    public enum AdProvider {
+        GOOGLE,
+        UNITY,
+    }
 
     static InterstitialAd interstitial;
     static RewardBasedVideoAd rewards;
 
     static bool isInitialized;
 
+    public static AdProvider LastDisplayedAd { get; private set; }
+
     // Use this for initialization
     public static void Initialize() {
         if (isInitialized)
             return;
 
-        MobileAds.Initialize(Constants.AdmobAppId);
+        if (Constants.IsGoogleAdEnabled)
+            MobileAds.Initialize(Constants.AdmobAppId);
+
+        if (Constants.IsUnityAdEnabled)
+            Advertisement.Initialize(Constants.GameID);
+
         isInitialized = true;
     }
 
@@ -36,12 +49,13 @@ public class Ads {
     }
 
     public static bool IsInterstitialLoaded() {
-       return interstitial != null && interstitial.IsLoaded();
+        return interstitial != null && interstitial.IsLoaded();
     }
 
     public static void ShowInterstitial() {
         if (interstitial != null && interstitial.IsLoaded()) {
             interstitial.Show();
+            LastDisplayedAd = AdProvider.GOOGLE;
         }
     }
 
@@ -121,6 +135,15 @@ public class Ads {
     static void OnRewarded(object sender, Reward e) {
         Debug.Log(String.Format("Ad rewarded -> type: {0}, amount: {1}", e.Type, e.Amount));
         EventManager.TriggerEvent("AdRewarded");
+    }
+    #endregion
+
+    #region UNITY
+    public static void ShowUnityAd(string placementId) {
+        if (Advertisement.IsReady(placementId)) {
+            Advertisement.Show(placementId);
+            LastDisplayedAd = AdProvider.UNITY;
+        }
     }
     #endregion
 }

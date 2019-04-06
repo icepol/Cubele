@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
-using UnityEngine.Advertisements;
 using Facebook.Unity;
 
 public class LevelManager : MonoBehaviour {
@@ -22,8 +21,7 @@ public class LevelManager : MonoBehaviour {
         EventManager.AddListener("PlayerDie", OnPlayerDie);
         EventManager.AddListener("BonusCollision", OnBonusCollision);
 
-        //Ads.Initialize();
-        Advertisement.Initialize(Constants.GameID);
+        Ads.Initialize();
 
         GameServices.Initialize();
 
@@ -57,9 +55,9 @@ public class LevelManager : MonoBehaviour {
             Handheld.Vibrate();
 #endif
 
-        //if (PlayerStats.GamePlayCount % 2 == 0)
-            //// show ad each second game
-            //Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
+        if (PlayerStats.GamePlayCount % 2 == 0)
+            // show ad each second game
+            Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
     }
 
     void OnBonusCollision(GameObject bonus) {
