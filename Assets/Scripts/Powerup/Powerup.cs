@@ -12,6 +12,7 @@ public class Powerup : MonoBehaviour
         IMMORTALITY,
     }
 
+    [SerializeField] GameObject explosionPowerup;
     [SerializeField] GameObject powerupText;
     [SerializeField] float speed = 1f;
     [SerializeField] PowerupType powerupType;
@@ -43,9 +44,17 @@ public class Powerup : MonoBehaviour
 
         EventManager.TriggerEvent("CollectPowerup", (int)powerupType);
 
+        Explosion();
         SpawnPowerupText();
 
         Destroy(gameObject);
+    }
+
+    void Explosion() {
+        GameObject explosionObject = Instantiate(explosionPowerup);
+        explosionObject.transform.position = new Vector3(
+            transform.position.x, transform.position.y, -1
+        );
     }
 
     void SpawnPowerupText() {

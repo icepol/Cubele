@@ -5608,6 +5608,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2190188515754140441, guid: 6366cd790ca3f4f71b1b2f904a9bdd29,
+        type: 3}
+      propertyPath: powerups.Array.data[0]
+      value: 
+      objectReference: {fileID: 8665567348017580406, guid: a4169a8621f9448f1aeb28cafb88ba0c,
+        type: 3}
+    - target: {fileID: 2190188515754140441, guid: 6366cd790ca3f4f71b1b2f904a9bdd29,
+        type: 3}
+      propertyPath: powerups.Array.data[1]
+      value: 
+      objectReference: {fileID: 7205555819698303303, guid: c62d79d7ff2da43a8bd887868e028224,
+        type: 3}
+    - target: {fileID: 2190188515754140441, guid: 6366cd790ca3f4f71b1b2f904a9bdd29,
+        type: 3}
+      propertyPath: powerups.Array.data[2]
+      value: 
+      objectReference: {fileID: 2740928886699603706, guid: 2fc343ef5ada341dbbd31ef383f11b2e,
+        type: 3}
+    - target: {fileID: 2190188515754140441, guid: 6366cd790ca3f4f71b1b2f904a9bdd29,
+        type: 3}
+      propertyPath: powerups.Array.data[3]
+      value: 
+      objectReference: {fileID: 983068962463442691, guid: 33152fb252b2c4c3b84daa45672ce80b,
+        type: 3}
+    - target: {fileID: 2190188515754140441, guid: 6366cd790ca3f4f71b1b2f904a9bdd29,
+        type: 3}
+      propertyPath: powerups.Array.data[4]
+      value: 
+      objectReference: {fileID: 2224325830343603441, guid: ebcab7053ea0245c295761f67c9aa925,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6366cd790ca3f4f71b1b2f904a9bdd29, type: 3}
 --- !u!1001 &3525029365923956543

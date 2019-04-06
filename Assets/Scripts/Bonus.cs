@@ -66,7 +66,7 @@ public class Bonus : MonoBehaviour
     void Explosion(GameObject explosionPrefab) {
         GameObject explosionObject = Instantiate(explosionPrefab);
         explosionObject.transform.position = new Vector3(
-            transform.position.x, transform.position.y, 0
+            transform.position.x, transform.position.y, -1
         );
     }
 
