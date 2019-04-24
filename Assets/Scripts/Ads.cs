@@ -18,6 +18,7 @@ public class Ads {
     static bool isInitialized;
 
     public static AdProvider LastDisplayedAd { get; private set; }
+    public static AdProvider LastRequestedAd { get; private set; }
 
     // Use this for initialization
     public static void Initialize() {
@@ -53,6 +54,8 @@ public class Ads {
     }
 
     public static void ShowInterstitial() {
+        LastRequestedAd = AdProvider.GOOGLE;
+
         if (interstitial != null && interstitial.IsLoaded()) {
             interstitial.Show();
             LastDisplayedAd = AdProvider.GOOGLE;
@@ -140,6 +143,8 @@ public class Ads {
 
     #region UNITY
     public static void ShowUnityAd(string placementId) {
+        LastRequestedAd = AdProvider.UNITY;
+
         if (Advertisement.IsReady(placementId)) {
             Advertisement.Show(placementId);
             LastDisplayedAd = AdProvider.UNITY;
