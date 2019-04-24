@@ -13,7 +13,10 @@ public class Powerup : MonoBehaviour
     }
 
     [SerializeField] GameObject explosionPowerup;
+    [SerializeField] GameObject effectPrefab;
+
     [SerializeField] GameObject powerupText;
+
     [SerializeField] float speed = 1f;
     [SerializeField] PowerupType powerupType;
 
@@ -55,6 +58,9 @@ public class Powerup : MonoBehaviour
         explosionObject.transform.position = new Vector3(
             transform.position.x, transform.position.y, -1
         );
+
+        GameObject effect = Instantiate(effectPrefab);
+        effect.transform.position = transform.position;
     }
 
     void SpawnPowerupText() {

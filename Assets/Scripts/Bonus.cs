@@ -8,6 +8,9 @@ public class Bonus : MonoBehaviour
     [SerializeField] GameObject explosionMine;
     [SerializeField] GameObject perfect;
 
+    [SerializeField] GameObject bonusEffect;
+    [SerializeField] GameObject enemyEffect;
+
     Animator animator;
     SoundsManager soundsManager;
 
@@ -39,8 +42,7 @@ public class Bonus : MonoBehaviour
                 return;
             }
             else {
-                Explosion(explosionMine);
-                EventManager.TriggerEvent("Collision");
+                PlayerEnemyCollision();
             }
 
             Destroy(gameObject);
@@ -58,6 +60,10 @@ public class Bonus : MonoBehaviour
             animator.SetBool("IsBonus", isBonus);
 
             yield return new WaitForSeconds(0.2f);
+
+            if (!isBonus)
+                MakeEffect(bonusEffect);
+
             isBonus = true;
             animator.SetBool("IsBonus", isBonus);
         }
@@ -81,5 +87,20 @@ public class Bonus : MonoBehaviour
 
         GameObject perfectGameObject = Instantiate(perfect, transform.position, Quaternion.identity);
         perfectGameObject.GetComponent<Perfect>().SetComboMultiplier(PlayerStats.ComboMultiplier);
+
+        MakeEffect(bonusEffect);
+    }
+
+    void PlayerEnemyCollision() {
+        Explosion(explosionMine);
+        EventManager.TriggerEvent("Collision");
+
+        MakeEffect(enemyEffect);
+    }
+
+    void MakeEffect(GameObject prefab) {
+        GameObject effect = Instantiate(prefab);
+        effect.transform.position = transform.position;
+        effect.GetComponent<PlayerJumpEffect>().SetRotation(transform.localRotation);
     }
 }

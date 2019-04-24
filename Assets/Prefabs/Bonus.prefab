@@ -100,6 +100,10 @@ MonoBehaviour:
   explosionMine: {fileID: 7693109778620876777, guid: 3f4d134cd2b8d47c1a86a11a6c150aeb,
     type: 3}
   perfect: {fileID: 3602808701914882864, guid: c0bf79c1fc48e4cc5838248cead6ebc6, type: 3}
+  bonusEffect: {fileID: 2078515148482971708, guid: c29c1b96e883d4ca499caeca8b47390e,
+    type: 3}
+  enemyEffect: {fileID: 2078515148482971708, guid: fe5cd2f6d235e4e10b2e7f65c0f822f9,
+    type: 3}
 --- !u!95 &2679565357528899504
 Animator:
   serializedVersion: 3

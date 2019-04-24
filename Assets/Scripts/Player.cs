@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpSpeed = 10f;
 
     [SerializeField] GameObject explosion;
-    [SerializeField] GameObject dust;
+    [SerializeField] GameObject[] dustPrefabs;
+    [SerializeField] GameObject jumpEffectPrefab;
+    [SerializeField] GameObject wallCollisionPrefab;
 
     bool moveRight;
     bool isDead;
@@ -58,15 +60,22 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
+        if (isDead)
+            return;
+
         if (collision.gameObject.CompareTag("Wall") && !ignoreCollisionsAndControlls) {
             if (IsBouncing)
                 BounceFromWall();
             else
                 EventManager.TriggerEvent("Collision");
+
+            MakeCollisionEffect();
         }
         else if (collision.gameObject.CompareTag("DeadZone")) {
             // dead zones are on the top and on the bottom of play area
             EventManager.TriggerEvent("Collision");
+
+            MakeCollisionEffect();
         }
     }
 
@@ -86,12 +95,9 @@ public class Player : MonoBehaviour
             jumpSpeed
         ));
 
-        GameObject dustObject = Instantiate(dust);
-        dustObject.transform.position = new Vector3(
-            transform.position.x, transform.position.y - 0.15f, 0
-        );
-
         soundsManager.Jump();
+
+        MakeDust();
     }
 
     void Jump() {
@@ -105,12 +111,10 @@ public class Player : MonoBehaviour
             jumpSpeed
         ));
 
-        GameObject dustObject = Instantiate(dust);
-        dustObject.transform.position = new Vector3(
-            transform.position.x, transform.position.y - 0.15f, 0
-        );
-
         soundsManager.Jump();
+
+        MakeDust();
+        MakeJumpEffect();
     }
 
     void OnCollision() {
@@ -172,4 +176,26 @@ public class Player : MonoBehaviour
         ignoreCollisionsAndControlls = false;
     }
 
+    void MakeDust() {
+        foreach (GameObject dust in dustPrefabs) {
+            GameObject dustObject = Instantiate(dust);
+            dustObject.transform.position = new Vector3(
+                transform.position.x, transform.position.y - 0.15f, 0
+            );
+        }
+    }
+
+    void MakeJumpEffect() {
+        GameObject jumpEffect = Instantiate(jumpEffectPrefab);
+        jumpEffect.transform.position = new Vector3(
+            transform.position.x, transform.position.y - 0.15f, 0
+        );
+        jumpEffect.GetComponent<PlayerJumpEffect>().SetRotation(transform.localRotation);
+    }
+
+    void MakeCollisionEffect() {
+        GameObject effect = Instantiate(wallCollisionPrefab);
+        effect.transform.position = transform.position;
+        effect.GetComponent<PlayerJumpEffect>().SetRotation(transform.localRotation);
+    }
 }
