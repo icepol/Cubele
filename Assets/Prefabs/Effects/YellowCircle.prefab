@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 1.5
-  opacitySpeed: 0.0025
+  opacitySpeed: 0.2
+  colorSpeed: 1.05
 --- !u!114 &1988311698537622373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,4 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2dca56ca89fa4c3aa81a4f9a9e25a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 10
+  delay: 1.5
