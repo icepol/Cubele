@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -107981364, guid: 741884b37a0234d86bb740e55081cd5f, type: 3}
+  m_Name: UDP Settings
+  m_EditorClassIdentifier: 
+  UnityProjectID: 0a2f6cd4-685c-455b-b746-49d3edf7fa02
+  UnityClientID: f8YMBRsKDcf_QsRvcR0H0w
+  UnityClientKey: rnoirWmwI6XXmZdjV8swWzGAaA38qBh6s6Ss1syYjb8
+  UnityClientRSAPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnm48tWbMBHsCPmJeBGGQ0cxTOzcIhYNRMVeBS4seCzIVUZhuJXb6xS2hyiy4hiVK+YaJVFmK033YsvoKYWktLvipqq2fKQAbxESo4C7pHUipqgBhWmfqCJoRPphEmwl8m1DwhJd/uJww3Wem7h2BWEMOx8iPV5TiC3jun+Y7/htb9IpkmcM9gQeN0iwwLJHk6uD3gyeuPD0e9jB2+qZyPc8pWNE1znFgc2W/6nx64FlyyyX31P+Fmmlm0HNHs4/7ihniBqpEzJPmhZZqyLXjZQs6wlaITmDZCW/QDdwE2ThjxMJpPNm1MqTum0O2Qk66opXWuvS6+I/b8P/GsRZnMQIDAQAB
+  AppName: Cubele
+  AppSlug: d3608950-8759-4b1c-8f53-8b07f6d3e852
+  AppItemId: 274879037329
+  Permission: owner

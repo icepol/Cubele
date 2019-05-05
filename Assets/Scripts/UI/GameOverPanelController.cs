@@ -62,15 +62,8 @@ public class GameOverPanelController : MonoBehaviour
     }
 
     void ShowAd() {
-        if (PlayerStats.GamePlayCount % 3 == 0) {
-            // show Unity ads now
-            if (Ads.LastRequestedAd == Ads.AdProvider.UNITY)
-                // display Google ad if last was Unity
-                Ads.ShowInterstitial();
-            else
-                // display Unity ad if last was Google
-                Ads.ShowUnityAd("video");
-
+        if (PlayerStats.GamePlayCount % 2 == 0) {
+            Ads.ShowInterstitial();
             isAdShown = true;
         }
     }

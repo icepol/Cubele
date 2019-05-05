@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour {
             Handheld.Vibrate();
 #endif
 
-        if (PlayerStats.GamePlayCount % 3 == 0)
+        if (PlayerStats.GamePlayCount % 2 == 0)
             // show ad each second game
             Ads.RequestInterstitial(PlayerStats.PlayTime > 10f ? Constants.GameOverVideoId : Constants.GameOverSimpleId);
     }
